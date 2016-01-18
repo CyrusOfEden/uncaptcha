@@ -1,0 +1,10 @@
+*.DS_Store
+*.swo
+*.swp
+/.bundle
+/.env
+/.foreman
+/coverage/*
+/log/*
+/public/system
+/tmp/*

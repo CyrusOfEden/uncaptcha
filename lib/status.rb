@@ -1,32 +1,20 @@
-require 'redis'
+require_relative 'state'
 
-class Status
+class Status < State
   EXPIRE_TIME = 60 # 1 minute
 
-  attr_reader :id
-
-  def self.conn
-    @redis ||= Redis.new
-  end
-
-  def initialize(id)
-    @id = id
-  end
-
   def set(status)
-    Status.conn.set(encode_key(id), status, EX: EXPIRE_TIME)
+    Status.conn.set(key, status, EX: EXPIRE_TIME)
   end
 
-  def status
-    key = encode_key(id)
-    value = Status.conn.get(key)
-    Status.conn.del(key)
-    value
+  def check
+    @status ||= Status.conn.get(key).tap do |value|
+      Status.conn.del(key) unless value.nil?
+    end
+    @status == "true"
   end
 
-  private
-
-  def encode_key(id)
-    "captcha-#{id}-status"
+  def key
+    @key ||= "captcha-#{id}-status"
   end
 end

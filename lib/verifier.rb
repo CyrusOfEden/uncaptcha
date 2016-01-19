@@ -1,36 +1,31 @@
 require 'digest/sha1'
+require_relative 'state'
 require_relative 'status'
 
-class Verifier
-  attr_reader :id, :digest
+class Verifier < State
+  attr_reader :digest
 
-  def self.conn
-    @redis ||= Redis.new
+  def initialize(id, setup: true)
+    super(id)
+    set if setup
   end
 
-  def initialize(id)
-    key = encode_key(id)
-
-    @id = id
-    @digest = Verifier.conn.get(key)
-
-    Verifier.conn.del(key)
+  def set
+    @digest = Verifier.conn.get(key).tap do |value|
+      Verifier.conn.del(key) unless value.nil?
+    end
   end
 
-  def check(sequence)
+  def check(sequence, status: Status)
     return false if digest.nil?
 
     sequence = sequence.map { |color| color.to_s[0] }.join("") if sequence.is_a? Array
-    result = digest == Digest::SHA1.hexdigest(sequence)
-
-    Status.new(id).set(result)
-
-    result
+    (digest == Digest::SHA1.hexdigest(sequence)).tap do |result|
+      status.new(id).set(result)
+    end
   end
 
-  private
-
-  def encode_key(id)
-    "captcha-#{id}"
+  def key
+    @key ||= "captcha-#{id}"
   end
 end

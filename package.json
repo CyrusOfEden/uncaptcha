@@ -1,0 +1,20 @@
+{
+  "name": "uncaptcha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knrz/uncaptcha.git"
+  },
+  "author": "Kash Nouroozi <hi@knrz.co>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/knrz/uncaptcha/issues"
+  },
+  "homepage": "https://github.com/knrz/uncaptcha#readme"
+}

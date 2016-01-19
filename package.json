@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "build": "./node_modules/.bin/babel index.js -o public/uncaptcha.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/knrz/uncaptcha/issues"
   },
-  "homepage": "https://github.com/knrz/uncaptcha#readme"
+  "homepage": "https://github.com/knrz/uncaptcha#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13"
+  }
 }

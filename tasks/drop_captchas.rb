@@ -1,7 +1,7 @@
 require 'pry'
 require 'redis'
-require_relative '../lib/uncaptcha/captcha'
+require_relative '../lib/captcha'
 
-Redis.new.del(Uncaptcha::Captcha::SET)
+Redis.new.del(Captcha::SET)
 
 binding.pry

@@ -1,10 +1,8 @@
 require 'json/ext' # use the C extension
 require 'redis'
 require 'pry'
-require_relative '../lib/uncaptcha/captcha'
-require_relative '../lib/uncaptcha/generator'
-
-include Uncaptcha
+require_relative '../lib/captcha'
+require_relative '../lib/generator'
 
 colors = [:blue, :red, :purple, :green, :yellow]
 

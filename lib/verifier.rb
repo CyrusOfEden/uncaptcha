@@ -2,6 +2,9 @@ require 'digest/sha1'
 require_relative 'state'
 require_relative 'status'
 
+# A Verifier uses the persisted digest from Captcha to compare an attempt.
+# Deletes the digest once attempted to prevent multiple tries on the same Captcha.
+# It then persists the status accordingly.
 class Verifier < State
   attr_reader :digest
 
@@ -25,12 +28,16 @@ class Verifier < State
     end
   end
 
-  def check(status: Status)
+  # Add the ability to inject an alternative state manager
+  def check(persist: Status)
+    # If there is no Captcha or it hasn't been verified yet
     return false if @digest.nil?
 
+    # Set result if it hasn't been set already
     if @result.nil?
       @result = @digest == Digest::SHA1.hexdigest(@sequence)
-      status.new(id).set(@result)
+      # Save the status
+      persist.new(id).set(@result)
     end
 
     @result

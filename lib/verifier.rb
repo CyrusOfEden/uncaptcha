@@ -5,10 +5,18 @@ require_relative 'status'
 class Verifier < State
   attr_reader :digest
 
-  def initialize(id, sequence, setup: true)
+  def initialize(id, sequence = nil, setup: true)
     super(id)
-    @sequence = sequence
-    set if setup
+
+    return unless setup
+
+    @sequence = if sequence.is_a? Array
+      sequence.map { |color| color.to_s[0] }.join("")
+    else
+      sequence
+    end
+
+    set
   end
 
   def set
@@ -18,13 +26,11 @@ class Verifier < State
   end
 
   def check(status: Status)
-    return false if digest.nil?
-
-    sequence = sequence.map { |color| color.to_s[0] }.join("") if sequence.is_a? Array
+    return false if @digest.nil?
 
     if @result.nil?
-      @result = digest == Digest::SHA1.hexdigest(@sequence)
-      status.new(id).set(result)
+      @result = @digest == Digest::SHA1.hexdigest(@sequence)
+      status.new(id).set(@result)
     end
 
     @result
@@ -35,6 +41,6 @@ class Verifier < State
   end
 
   def to_h
-    @hash ||= { id: @id, digest: check }
+    @hash ||= { id: @id, status: check }
   end
 end

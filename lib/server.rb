@@ -12,15 +12,22 @@ Cuba.use Rack::Static,
   root: "public/uncaptcha.css"
 
 Cuba.define do
-  on get, "captcha" do
-    res.write Captcha.new.to_json
-  end
+  on "captcha" do
+    res.headers["Content-Type"] = "application/json"
 
-  on post, "captcha/:id", param("seq") do |id, sequence|
-    res.write Verifier.new(id, sequence).to_json
-  end
+    # GET /captcha
+    on get, root do
+      res.write Captcha.new.to_json
+    end
 
-  on post, "captcha/:id/status" do |id|
-    res.write Status.new(id).to_json
+    # POST /captcha/:id?seq=
+    on post, ":id", param("seq") do |id, seq|
+      res.write Verifier.new(id, seq).to_json
+    end
+
+    # GET /captcha/:id
+    on get, ":id" do |id|
+      res.write Status.new(id).to_json
+    end
   end
 end

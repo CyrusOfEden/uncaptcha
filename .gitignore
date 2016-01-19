@@ -9,6 +9,8 @@
 /public/system
 /tmp/*
 
+/public/uncaptcha.js
+
 # Logs
 logs
 *.log

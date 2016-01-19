@@ -21,4 +21,8 @@ class Captcha < State
 
     Captcha.conn.set(verifier.new(@id).key, @sequence, EX: EXPIRE_TIME)
   end
+
+  def to_h
+    @hash ||= { id: @id, image: @image }
+  end
 end

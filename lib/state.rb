@@ -10,4 +10,8 @@ class State
   def initialize(id)
     @id = id
   end
+
+  def to_json
+    to_h.to_json
+  end
 end

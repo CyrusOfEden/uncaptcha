@@ -17,4 +17,8 @@ class Status < State
   def key
     @key ||= "captcha-#{id}-status"
   end
+
+  def to_h
+    @hash ||= { id: @id, status: check }
+  end
 end

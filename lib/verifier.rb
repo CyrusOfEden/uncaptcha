@@ -5,8 +5,9 @@ require_relative 'status'
 class Verifier < State
   attr_reader :digest
 
-  def initialize(id, setup: true)
+  def initialize(id, sequence, setup: true)
     super(id)
+    @sequence = sequence
     set if setup
   end
 
@@ -16,16 +17,24 @@ class Verifier < State
     end
   end
 
-  def check(sequence, status: Status)
+  def check(status: Status)
     return false if digest.nil?
 
     sequence = sequence.map { |color| color.to_s[0] }.join("") if sequence.is_a? Array
-    (digest == Digest::SHA1.hexdigest(sequence)).tap do |result|
+
+    if @result.nil?
+      @result = digest == Digest::SHA1.hexdigest(@sequence)
       status.new(id).set(result)
     end
+
+    @result
   end
 
   def key
     @key ||= "captcha-#{id}"
+  end
+
+  def to_h
+    @hash ||= { id: @id, digest: check }
   end
 end

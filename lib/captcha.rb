@@ -1,9 +1,12 @@
 require 'json/ext'
-require 'digest/sha1'
 require 'redis'
+
+require_relative 'verifier'
 
 class Captcha
   SET = "uncaptchas"
+  ID = "captcha_id"
+  EXPIRE_TIME = 60 * 5 # 5 minutes
 
   attr_reader :image
 
@@ -12,13 +15,13 @@ class Captcha
   end
 
   def initialize
-    data = JSON.parse(Captcha.conn.srandmember(SET), symbolize_names: true)
+    raw_data = Captcha.conn.srandmember(SET)
+    data = JSON.parse(raw_data, symbolize_names: true)
+
+    @id = Captcha.conn.incr(ID)
     @image = data[:image]
     @sequence = data[:sequence]
-  end
 
-  def check(sequence)
-    sequence = sequence.map { |color| color.to_s[0] }.join("") if sequence.is_a? Array
-    @sequence == Digest::SHA1.hexdigest(sequence)
+    Captcha.set(@id, @sequence, EX: EXPIRE_TIME)
   end
 end

@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "./node_modules/.bin/babel index.js | ./node_modules/.bin/uglifyjs --compress --mangle -o public/uncaptcha.js",
+    "build": "./node_modules/.bin/babel index.js | ./node_modules/.bin/uglifyjs --compress --mangle -o public/c.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

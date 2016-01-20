@@ -24,9 +24,6 @@
     valueOf() {
       return this.value;
     },
-    toString() {
-      return this.value.toString();
-    },
     to(fn, ...args) {
       this.value = fn(this.value, ...args);
       return this;
@@ -58,7 +55,6 @@
     req.send();
     return req;
   }
-
 
   // Function decorator to adapt functions for application on an array
   const adapt = function(fn) {

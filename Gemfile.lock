@@ -20,6 +20,7 @@ PLATFORMS
 DEPENDENCIES
   cuba
   pry
+  rack
   redis
   rmagick
 

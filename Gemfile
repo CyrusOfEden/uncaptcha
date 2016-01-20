@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
+# Rack
+gem 'rack'
 # Our web server
 gem 'cuba'
 # Our database

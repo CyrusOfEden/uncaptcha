@@ -41,7 +41,7 @@ class Generator
     end
     # Write the scene to a temporary file, because ImageMagick cannot
     # infer the type of an arbitrary blob. Here, it can set metadata based on
-    # on the file based on the .gif extension we use to write it.
+    # on the file based on the .gif extension we use to write the file.
     blob = nil
     Dir.mktmpdir do |tmpdir|
       path = File.join(tmpdir, "#{color || 'base'}.gif")

@@ -1,19 +1,16 @@
 require 'cuba'
-require_relative 'captcha'
-require_relative 'status'
-require_relative 'verifier'
+require_relative 'lib/captcha'
+require_relative 'lib/status'
+require_relative 'lib/verifier'
 
 Cuba.use Rack::Static,
-  urls: "/uncaptcha.js",
-  root: "public/uncaptcha.js"
-
-Cuba.use Rack::Static,
-  urls: "/uncaptcha.css",
-  root: "public/uncaptcha.css"
+  urls: ["/public"]
 
 Cuba.define do
+  # GET /captcha
   on "captcha" do
-    res.headers["Content-Type"] = "application/json"
+    res.headers["Access-Control-Allow-Origin"] = "*"
+    res.headers["Content-Type"] = "application/json; charset=utf-8"
 
     # GET /captcha
     on get, root do

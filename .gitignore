@@ -9,7 +9,7 @@
 /public/system
 /tmp/*
 
-/public/uncaptcha.js
+/public/*.js
 
 # Logs
 logs

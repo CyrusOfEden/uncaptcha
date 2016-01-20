@@ -79,14 +79,6 @@
   });
 
   // Convenience functions for elements
-  const style = adapt((element, props) => {
-    for (let prop in props) {
-      element.style[prop] = props[prop];
-    }
-  });
-  const show = (element) => style(element, { display: "block" });
-  const hide = (element) => style(element, { display: "none" });
-
   const getAttr = adapt((element, attr) => element.getAttribute(attr));
   const setAttr = adapt((element, attr, value) => element.setAttribute(attr, value));
 

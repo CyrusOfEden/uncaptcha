@@ -4,6 +4,18 @@ Simple, fun captchas for your forms.
 
 _Disclaimer: I am making no claims about the security of this captcha. I've only attempted to obfuscate as much as I can._
 
+## How It Works
+
+1. Uncaptcha will play a pre-generated GIF (encoded in `base64`, dynamically loaded from the server)
+2. The inputted sequence is submitted to the server for verification.
+3. On form submission, your server queries the Uncaptcha server to check the status of a captcha.
+
+**Obfuscation and Ephemerality**
+
+- Captchas solutions can only be submitted within 5 minutes of the captcha being generated (adjustable in `lib/captcha.rb`).
+- The status of a captcha can only be checked within 15 minutes of submission (adjustable in `lib/status.rb`).
+- Checking the status of a captcha more than once, regardless of the first status, will return `false`.
+
 ## Running It Off The Community Server
 
 **Embedding**

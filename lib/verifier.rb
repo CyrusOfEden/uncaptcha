@@ -44,7 +44,7 @@ class Verifier < State
   end
 
   def key
-    @key ||= "captcha-#{id}"
+    @key ||= "captcha-#{id}-digest"
   end
 
   def to_h

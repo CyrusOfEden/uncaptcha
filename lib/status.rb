@@ -3,7 +3,7 @@ require_relative 'state'
 # A Status returns the persisted status from the Verifier and deletes it,
 # to prevent checking the status of a previously-verified Captcha.
 class Status < State
-  EXPIRE_TIME = 60 # 1 minute
+  EXPIRE_TIME = 60 * 15 # 15 minutes
 
   # Set the status, with an expiry
   def set(status)

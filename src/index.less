@@ -1,0 +1,99 @@
+.uncaptcha {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Roboto, Ubuntu, Arial, sans-serif;
+  color: #232323;
+  height: 100px;
+  width: 400px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  &.ready, &.retry, &.success {
+    .uncaptcha-status { display: block; }
+    .uncaptcha-status img {
+      height: 60px;
+      padding: 20px 0;
+    }
+  }
+  &.play, &.input {
+    .uncaptcha-actions { display: block }
+  }
+  &.ready .uncaptcha-status {
+    cursor: pointer;
+    background-color: #222222;
+  }
+  &.play .uncaptcha-status {
+    display: block;
+    height: 80px;
+  }
+  &.input .uncaptcha-buttons {
+    display: block;
+  }
+  &.retry .uncaptcha-status {
+    cursor: pointer;
+    background-color: tomato;
+  }
+  &.success .uncaptcha-status {
+    background-color: #34f02c;
+  }
+}
+
+.uncaptcha img {
+  pointer-events: none;
+}
+
+.uncaptcha-status {
+  background-color: #ffffff;
+  height: 100px;
+  display: none;
+  img {
+    margin: auto;
+    display: block;
+  }
+}
+
+.uncaptcha-buttons {
+  display: none;
+  height: 80px;
+  list-style: none;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  li {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    height: 100%;
+    width: 20%;
+    &:active { opacity: 0.7; }
+  }
+  .uncaptcha-blue {
+    background-color: #4dc1ff;
+    &:hover { background-color: #0074d9; }
+  }
+  .uncaptcha-red {
+    background-color: #ff8e83;
+    &:hover { background-color: #ff4136; }
+  }
+  .uncaptcha-purple {
+    background-color: #fe5aff;
+    &:hover { background-color: #b10dc9; }
+  }
+  .uncaptcha-green {
+    background-color: #7bff8d;
+    &:hover { background-color: #2ecc40; }
+  }
+  .uncaptcha-yellow {
+    background-color: #ffff4d;
+    &:hover { background-color: #ffdc00; }
+  }
+}
+
+.uncaptcha-actions {
+  display: none;
+  height: 20px;
+  margin: 0 1px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}

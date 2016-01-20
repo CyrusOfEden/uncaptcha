@@ -1,0 +1,112 @@
+.uncaptcha {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Roboto, Ubuntu, Arial, sans-serif;
+  color: #232323;
+  height: 100px;
+  width: 400px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.uncaptcha.ready .uncaptcha-status,
+.uncaptcha.retry .uncaptcha-status,
+.uncaptcha.success .uncaptcha-status {
+  display: block;
+}
+.uncaptcha.ready .uncaptcha-status img,
+.uncaptcha.retry .uncaptcha-status img,
+.uncaptcha.success .uncaptcha-status img {
+  height: 60px;
+  padding: 20px 0;
+}
+.uncaptcha.play .uncaptcha-actions,
+.uncaptcha.input .uncaptcha-actions {
+  display: block;
+}
+.uncaptcha.ready .uncaptcha-status {
+  cursor: pointer;
+  background-color: #222222;
+}
+.uncaptcha.play .uncaptcha-status {
+  display: block;
+  height: 80px;
+}
+.uncaptcha.input .uncaptcha-buttons {
+  display: block;
+}
+.uncaptcha.retry .uncaptcha-status {
+  cursor: pointer;
+  background-color: tomato;
+}
+.uncaptcha.success .uncaptcha-status {
+  background-color: #34f02c;
+}
+.uncaptcha img {
+  pointer-events: none;
+}
+.uncaptcha-status {
+  background-color: #ffffff;
+  height: 100px;
+  display: none;
+}
+.uncaptcha-status img {
+  margin: auto;
+  display: block;
+}
+.uncaptcha-buttons {
+  display: none;
+  height: 80px;
+  list-style: none;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+}
+.uncaptcha-buttons li {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  height: 100%;
+  width: 20%;
+}
+.uncaptcha-buttons li:active {
+  opacity: 0.7;
+}
+.uncaptcha-buttons .uncaptcha-blue {
+  background-color: #4dc1ff;
+}
+.uncaptcha-buttons .uncaptcha-blue:hover {
+  background-color: #0074d9;
+}
+.uncaptcha-buttons .uncaptcha-red {
+  background-color: #ff8e83;
+}
+.uncaptcha-buttons .uncaptcha-red:hover {
+  background-color: #ff4136;
+}
+.uncaptcha-buttons .uncaptcha-purple {
+  background-color: #fe5aff;
+}
+.uncaptcha-buttons .uncaptcha-purple:hover {
+  background-color: #b10dc9;
+}
+.uncaptcha-buttons .uncaptcha-green {
+  background-color: #7bff8d;
+}
+.uncaptcha-buttons .uncaptcha-green:hover {
+  background-color: #2ecc40;
+}
+.uncaptcha-buttons .uncaptcha-yellow {
+  background-color: #ffff4d;
+}
+.uncaptcha-buttons .uncaptcha-yellow:hover {
+  background-color: #ffdc00;
+}
+.uncaptcha-actions {
+  display: none;
+  height: 20px;
+  margin: 0 1px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}

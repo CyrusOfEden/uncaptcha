@@ -9,8 +9,7 @@
 /public/system
 /tmp/*
 
-/public/*.js
-/public/*.css
+public/
 
 # Logs
 logs

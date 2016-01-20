@@ -19,12 +19,12 @@ Cuba.define do
 
     # POST /captcha/:id?seq=
     on post, ":id", param("seq") do |id, seq|
-      res.write Verifier.new(id, seq).to_json
+      res.write Verifier.new(id.to_i, seq).to_json
     end
 
     # GET /captcha/:id
     on get, ":id" do |id|
-      res.write Status.new(id).to_json
+      res.write Status.new(id.to_i).to_json
     end
   end
 end

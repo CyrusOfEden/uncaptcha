@@ -2,6 +2,10 @@
 
 Simple, fun captchas for your forms.
 
+![Success Demo](demo/success.gif)
+
+![Retry Demo](demo/retry.gif)
+
 _Disclaimer: I am making no claims about the security of this captcha. I've only attempted to obfuscate as much as I can._
 
 ## How It Works

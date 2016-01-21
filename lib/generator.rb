@@ -64,16 +64,14 @@ class Generator
   # Returns a hash containing the SHA1-encoded order and the base64-encoded gif.
   def build(order)
     image = ImageList.new.tap do |scene|
-      blobs = [scenes[:base]] + order.map { |color| scenes[color.to_sym] }
+      blobs = [scenes[:base], *order.map { |color| scenes[color.to_sym] }]
       scene.from_blob(*blobs)
       scene.iterations = 1
     end.deconstruct.to_blob
     # sequence is the first character of each color as a string
     sequence = order.map { |color| color.to_s[0] }.join("")
 
-    data = {
-      sequence: Digest::SHA1.hexdigest(sequence),
-      image: Base64.encode64(image).gsub("\n", "")
-    }
+    { sequence: Digest::SHA1.hexdigest(sequence),
+      image: Base64.encode64(image).gsub("\n", "") }
   end
 end

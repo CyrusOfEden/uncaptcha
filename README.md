@@ -20,7 +20,7 @@ _Disclaimer: I am making no claims about the security of this captcha. I've only
 - The status of a captcha can only be checked within 15 minutes of submission (adjustable in `lib/status.rb`).
 - Checking the status of a captcha more than once, regardless of the first status, will return `false`.
 
-## Running It Off The Community Server
+## Running It Off The Community Server (COMING SOON. IGNORE FOR NOW)
 
 **Embedding**
 

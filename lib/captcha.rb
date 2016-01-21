@@ -6,8 +6,8 @@ require_relative 'verifier'
 
 # A Captcha, when created, returns an image and persists the pattern digest.
 class Captcha < State
-  SET = "uncaptchas"
-  ID = "captcha_id"
+  SET = "uncaptchas" # redis key
+  ID = "captcha_id" # redis key
   EXPIRE_TIME = 60 * 5 # 5 minutes
 
   attr_reader :image

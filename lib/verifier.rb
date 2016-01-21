@@ -35,6 +35,7 @@ class Verifier < State
 
     # Set result if it hasn't been set already
     if @result.nil?
+      # Set the result
       @result = @digest == Digest::SHA1.hexdigest(@sequence)
       # Save the status
       persist.new(id).set(@result)

@@ -7,6 +7,7 @@ class Generator
 
   include Magick
 
+  # To allow for Generator.new do |config|, where config is the generator instance
   def initialize
     yield self if block_given?
   end
@@ -23,8 +24,8 @@ class Generator
           self.colors[:active][active]
         end
 
-        panel_width.times do |x|
-          panel_width.times do |y|
+        panel_width.times do |x| # 1–80
+          panel_width.times do |y| # 1–80
             frame.pixel_color((index * panel_width) + x, y, color_code)
           end
         end
@@ -36,6 +37,7 @@ class Generator
   # A scene has multiple shots. It has an active color, which may or may not be nil.
   def scene(color)
     image = ImageList.new.tap do |scene|
+      # Add shots to the scene
       scene << shot(active: color, delay: 85)
       scene << shot(active: nil, delay: 15)
     end
@@ -62,10 +64,11 @@ class Generator
   # Returns a hash containing the SHA1-encoded order and the base64-encoded gif.
   def build(order)
     image = ImageList.new.tap do |scene|
-      blobs = order.map { |color| scenes[color.to_sym] }.unshift(scenes[:base])
-      scene.iterations = 1
+      blobs = [scenes[:base]] + order.map { |color| scenes[color.to_sym] }
       scene.from_blob(*blobs)
+      scene.iterations = 1
     end.deconstruct.to_blob
+    # sequence is the first character of each color as a string
     sequence = order.map { |color| color.to_s[0] }.join("")
 
     data = {

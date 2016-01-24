@@ -7,7 +7,7 @@ class Generator
 
   include Magick
 
-  # To allow for Generator.new do |config|, where config is the generator instance
+  # To allow for Generator.new { |config| ... }, where config is the generator instance
   def initialize
     yield self if block_given?
   end
@@ -18,10 +18,10 @@ class Generator
 
     Image.new(self.dimensions[:width], self.dimensions[:height]).tap do |frame|
       self.colors[:order].each.with_index do |color, index|
-        color_code = if active.nil? || color != active
-          self.colors[:inactive][color]
+        color_code = if color == active
+          self.colors[:active][color]
         else
-          self.colors[:active][active]
+          self.colors[:inactive][color]
         end
 
         panel_width.times do |x| # 1–80
